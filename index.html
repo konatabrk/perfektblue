@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REDACTED</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Iosevka&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Iosevka';
+      font-size: 16pt;
+    }
+    .section-content {
+      text-align: left;
+      font-size: 1.2rem;
+    }
+  </style>
+  <script>
+    let currentPage = 1;
+    const rowsPerPage = 16;
+    let allRows = [];
+  
+    function initializeTable() {
+      allRows = Array.from(document.querySelectorAll("#certTable tbody tr"));
+      filterAndPaginate(); // Start with full data, paginated
+    }
+  
+    function filterAndPaginate() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+  
+      const filteredRows = allRows.filter(row => {
+        const cells = row.querySelectorAll("td");
+        const vendor = cells[1].textContent.toLowerCase();
+        const product = cells[2].textContent.toLowerCase();
+        const device = cells[3].textContent.toLowerCase();
+        return vendor.includes(query) || product.includes(query) || device.includes(query);
+      });
+  
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const paginatedRows = filteredRows.slice(startIndex, startIndex + rowsPerPage);
+  
+      const tbody = document.querySelector("#certTable tbody");
+      tbody.innerHTML = "";
+      paginatedRows.forEach(row => tbody.appendChild(row));
+  
+      updatePaginationControls(filteredRows.length);
+    }
+  
+    function updatePaginationControls(totalFilteredRows) {
+      const totalPages = Math.ceil(totalFilteredRows / rowsPerPage);
+      document.getElementById("prevBtn").disabled = currentPage === 1;
+      document.getElementById("nextBtn").disabled = currentPage >= totalPages;
+    }
+  
+    function changePage(direction) {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filteredRows = allRows.filter(row => {
+        const cells = row.querySelectorAll("td");
+        const vendor = cells[1].textContent.toLowerCase();
+        const product = cells[2].textContent.toLowerCase();
+        const device = cells[3].textContent.toLowerCase();
+        return vendor.includes(query) || product.includes(query) || device.includes(query);
+      });
+  
+      const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+      if (direction === "next" && currentPage < totalPages) {
+        currentPage++;
+      } else if (direction === "prev" && currentPage > 1) {
+        currentPage--;
+      }
+      filterAndPaginate();
+    }
+  
+    function handleSearchInput() {
+      currentPage = 1; // Reset to first page on new search
+      filterAndPaginate();
+    }
+  
+    window.onload = initializeTable;
+  </script>
+</head>
+<body class="bg-[#f5f5f5] text-black">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur z-50 shadow">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="https://x.com/konatabrk" class="flex items-center space-x-2">
+        <img src="https://pbs.twimg.com/profile_images/1746321150550884352/mEBHWOhz_400x400.jpg" alt="Logo" class="h-10 w-10">
+        <!-- <h1 class="text-xl font-bold">konatabrk</h1> -->
+        <span class="text-xl font-bold">konatabrk</span>
+      </a>
+      <div class="space-x-6">
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#certs" class="hover:underline">REDACTED?</a>
+        <!-- <a href="#details" class="hover:underline">Details</a> -->
+        <!-- <a href="#demo" class="hover:underline">Demo</a> -->
+        <!-- <a href="#contact" class="hover:underline">Contact</a> -->
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-40 pb-10 text-center px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-6xl md:text-6xl font-bold mb-3">REDACTED</h2>
+      <p class="text-2xl md:text-2xl mb-4 font-semibold">REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED</p>
+      <p class="text-xl md:text-xl mb-4">REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED <a href="https://x.com/konatabrk" class="text-blue-600 underline hover:text-blue-800">@konatabrk</a></p>
+      <div class="space-x-4">
+        <a href="https://example.com/about" class="bg-black text-white px-6 py-2 rounded-md font-semibold">REDACTED</a>
+        <a href="https://example.com/certifications" class="bg-black text-white px-6 py-2 rounded-md font-semibold">REDACTED</a>
+        <a href="https://example.com/demo" class="bg-black text-white px-6 py-2 rounded-md font-semibold">REDACTED REDACTED</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 section-content">
+    <!-- <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center section-content"> -->
+      <div>
+        <h3 class="text-5xl font-bold mb-4">Research</h3>
+        <p class="text-xl mb-4">REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTEDREDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED</p>
+      </div>
+      <div>
+        <h3 class="text-5xl font-bold mb-4">Freetime</h3>
+        <p class="text-xl mb-4">REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED   REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED</p>
+      </div>
+      <!-- <img src="https://via.placeholder.com/500x300" alt="Concept" class="rounded-xl shadow-xl"> -->
+    </div>
+  </section>
+
+  <!-- Certifications Table Section -->
+  <!-- <section id="certs" class="py-20 bg-[#f5f5f5]"> -->
+  <section id="certs" class="bg-[#f5f5f5]">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-5xl font-bold mb-6 text-center">REDACTED REDACTED?</h3>
+      <p class="text-xl mb-4 text-center">REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED REDACTED</p>
+
+      <div class="mb-6 text-center top-0">
+        <input type="text" id="searchInput" oninput="handleSearchInput()" placeholder="Search by vendor, product, or device..." class="w-full md:w-1/2 px-4 py-2 border rounded shadow-sm">
+      </div>
+
+      <div class="overflow-x-auto">
+        <table id="certTable" class="min-w-full table-auto border border-gray-300">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="px-4 py-2 border">Id</th>
+              <th class="px-4 py-2 border">Vendor</th>
+              <th class="px-4 py-2 border">Product</th>
+              <th class="px-4 py-2 border">Device</th>
+              <th class="px-4 py-2 border">Certification Date</th>
+              <th class="px-4 py-2 border">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">1</td>
+              <td class="px-4 py-2 border">VendorA</td>
+              <td class="px-4 py-2 border">SecureOS</td>
+              <td class="px-4 py-2 border">Model X</td>
+              <td class="px-4 py-2 border">2024-01-10</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">2</td>
+              <td class="px-4 py-2 border">VendorB</td>
+              <td class="px-4 py-2 border">SafeNet</td>
+              <td class="px-4 py-2 border">Router Z</td>
+              <td class="px-4 py-2 border">2024-03-05</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">3</td>
+              <td class="px-4 py-2 border">VendorC</td>
+              <td class="px-4 py-2 border">EncryptPro</td>
+              <td class="px-4 py-2 border">Drive Y</td>
+              <td class="px-4 py-2 border">2025-02-12</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">4</td>
+              <td class="px-4 py-2 border">TestVendor1</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">5</td>
+              <td class="px-4 py-2 border">TestVendor2</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">6</td>
+              <td class="px-4 py-2 border">TestVendor3</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">7</td>
+              <td class="px-4 py-2 border">TestVendor4</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">8</td>
+              <td class="px-4 py-2 border">TestVendor5</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">9</td>
+              <td class="px-4 py-2 border">TestVendor6</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">10</td>
+              <td class="px-4 py-2 border">TestVendor7</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">11</td>
+              <td class="px-4 py-2 border">TestVendor8</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">12</td>
+              <td class="px-4 py-2 border">TestVendor9</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">13</td>
+              <td class="px-4 py-2 border">TestVendor10</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">14</td>
+              <td class="px-4 py-2 border">TestVendor11</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">15</td>
+              <td class="px-4 py-2 border">TestVendor12</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">16</td>
+              <td class="px-4 py-2 border">TestVendor13</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">17</td>
+              <td class="px-4 py-2 border">TestVendor14</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">18</td>
+              <td class="px-4 py-2 border">TestVendor15</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">19</td>
+              <td class="px-4 py-2 border">TestVendor16</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">20</td>
+              <td class="px-4 py-2 border">TestVendor17</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">21</td>
+              <td class="px-4 py-2 border">TestVendor18</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-gray-100">
+              <td class="px-4 py-2 border">22</td>
+              <td class="px-4 py-2 border">TestVendor19</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+            <tr class="bg-white">
+              <td class="px-4 py-2 border">23</td>
+              <td class="px-4 py-2 border">TestVendor20</td>
+              <td class="px-4 py-2 border">Test Product</td>
+              <td class="px-4 py-2 border">Test Device</td>
+              <td class="px-4 py-2 border">2024-02-13</td>
+              <td class="px-4 py-2 border text-blue-600 underline"><a href="#">View</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <div class="text-center mt-6">
+          <button id="prevBtn" onclick="changePage('prev')" class="bg-black text-white px-4 py-2 rounded mr-2">Prev</button>
+          <button id="nextBtn" onclick="changePage('next')" class="bg-black text-white px-4 py-2 rounded">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center py-6 text-sm mt-10">
+    &copy; 2025 konatabrk. All rights reserved.
+  </footer>
+
+</body>
+</html>
